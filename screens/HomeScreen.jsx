@@ -15,7 +15,7 @@ export default function HomeScreen({ navigation }) {
         ]}
         onPress={handleNewGame}
       >
-        <Text style={styles.buttonText}>New Game</Text>
+        <Text style={styles.buttonText}>Test Screen</Text>
       </Pressable>
       <Pressable
         style={({ pressed }) => [

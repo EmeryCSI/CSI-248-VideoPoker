@@ -1,5 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Pressable,
+} from "react-native";
 import { createDeck } from "../utils/Deck";
 import PokerHand from "../components/Poker-Hand";
 import { evaluateHand } from "../utils/HandEvaluator";
@@ -59,9 +65,9 @@ export default function GameScreen() {
             : "No Winner"}
         </Text>
       </View>
-      <TouchableOpacity style={styles.shuffleButton} onPress={drawCards}>
+      <Pressable style={styles.shuffleButton} onPress={drawCards}>
         <Text style={styles.shuffleButtonText}>Draw Cards</Text>
-      </TouchableOpacity>
+      </Pressable>
     </View>
   );
 }
