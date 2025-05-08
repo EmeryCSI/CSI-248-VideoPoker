@@ -29,7 +29,6 @@ export function createDeck() {
         altValue: value === 14 ? 1 : null,
         face: face,
         suit: suit,
-        imageFile: `${face}_of_${suit}`,
       });
     }
   }

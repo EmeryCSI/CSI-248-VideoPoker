@@ -17,6 +17,15 @@ export default function HomeScreen({ navigation }) {
       >
         <Text style={styles.buttonText}>New Game</Text>
       </Pressable>
+      <Pressable
+        style={({ pressed }) => [
+          styles.button,
+          pressed && styles.buttonPressed,
+        ]}
+        onPress={() => navigation.navigate("GameScreen")}
+      >
+        <Text style={styles.buttonText}>New Game</Text>
+      </Pressable>
     </View>
   );
 }
