@@ -1,25 +1,38 @@
 import { StyleSheet, Text, View, Pressable } from "react-native";
+import { Image } from "expo-image";
+import { createDeck } from "../utils/Deck";
+import { useState, useEffect } from "react";
+import { cardImages } from "../utils/Deck";
 
 export default function TestHand({ navigation }) {
+  const [hand, setHand] = useState([]);
+
+  useEffect(() => {
+    const deck = createDeck();
+    // Shuffle the deck
+    for (let i = deck.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [deck[i], deck[j]] = [deck[j], deck[i]];
+    }
+    // Take first 5 cards
+    setHand(deck.slice(0, 5));
+  }, []);
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Test Hand</Text>
+      <Text style={styles.title}>Video Poker</Text>
       <View style={styles.cardContainer}>
-        <View style={styles.card}>
-          <Text style={styles.cardText}>A♠</Text>
-        </View>
-        <View style={styles.card}>
-          <Text style={styles.cardText}>K♥</Text>
-        </View>
-        <View style={styles.card}>
-          <Text style={styles.cardText}>Q♦</Text>
-        </View>
-        <View style={styles.card}>
-          <Text style={styles.cardText}>J♣</Text>
-        </View>
-        <View style={styles.card}>
-          <Text style={styles.cardText}>10♠</Text>
-        </View>
+        {hand.map((card, index) => {
+          return (
+            <View key={index} style={styles.card}>
+              <Image
+                source={cardImages[card.face + card.suit]}
+                style={styles.cardImage}
+                contentFit="contain"
+              />
+            </View>
+          );
+        })}
       </View>
       <Pressable
         style={({ pressed }) => [
@@ -54,21 +67,12 @@ const styles = StyleSheet.create({
     marginBottom: 40,
   },
   card: {
-    width: 60,
-    height: 90,
-    backgroundColor: "#fff",
-    borderRadius: 8,
-    justifyContent: "center",
-    alignItems: "center",
-    elevation: 3,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
+    width: 120,
+    height: 180,
   },
-  cardText: {
-    fontSize: 24,
-    fontWeight: "bold",
+  cardImage: {
+    width: "100%",
+    height: "100%",
   },
   button: {
     backgroundColor: "#4CAF50",
