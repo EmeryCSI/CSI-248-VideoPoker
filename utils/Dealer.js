@@ -42,7 +42,7 @@ class Dealer {
       console.log(newHand[i]);
       if (!newHand[i].held > 0) {
         console.log("drawing card");
-        //const newCard = this.#deck.pop();
+        const newCard = this.#deck.pop();
         //console.log(newCard);
         newHand[i] = { ...newCard, held: false };
       }
