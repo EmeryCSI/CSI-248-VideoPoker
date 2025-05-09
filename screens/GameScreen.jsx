@@ -3,10 +3,8 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
   Pressable,
 } from "react-native";
-import { createDeck } from "../utils/Deck";
 import PokerHand from "../components/Poker-Hand";
 import { evaluateHand } from "../utils/HandEvaluator";
 import Dealer from "../utils/Dealer";
