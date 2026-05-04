@@ -8,29 +8,25 @@ import { payTable } from "./PayTable";
  * Three of a Kind, Two Pair, and Jacks or Better.
  */
 
+//Sorts all of the values in a hand
 function getCardValues(hand) {
   return hand.map((card) => card.value).sort((a, b) => a - b);
 }
 
+//returns the suits in a given hand
 function getCardSuits(hand) {
   return hand.map((card) => card.suit);
 }
 
+//checks for a flush (in a flush all suits will match the first suit because there is only one)
 function isFlush(hand) {
   const suits = getCardSuits(hand);
   return suits.every((suit) => suit === suits[0]);
 }
 
-/**
- * Checks if the card values form a straight (consecutive values)
- * A straight is 5 cards in sequence, like 2,3,4,5,6 or 10,J,Q,K,A
- * Special case: A,2,3,4,5 is also a straight (called a "wheel" or "bicycle")
- *
- * @param {Array} cardValues - Array of card values sorted in ascending order
- * @returns {boolean} True if the cards form a straight
- */
+//checks for a straight
 function isStraight(cardValues) {
-  // First, check for the special case of Ace-low straight (A,2,3,4,5)
+  // A, 2, 3, 4, 5 must be checked seperately.
   const isAceLowStraight =
     JSON.stringify(cardValues) === JSON.stringify([2, 3, 4, 5, 14]);
   if (isAceLowStraight) {
@@ -42,18 +38,12 @@ function isStraight(cardValues) {
   return cardValues[4] - cardValues[0] === 4;
 }
 
-/**
- * Counts how many cards of each value are in the hand
- * For example, if you have [2,2,2,7,7], it will return [3,2]
- * This helps us identify pairs, three of a kind, etc.
- *
- * @param {Array} hand - Array of card objects with value property
- * @returns {Array} Array of counts sorted in descending order
- *
- * Example:
- * Input: [{value: 2}, {value: 2}, {value: 2}, {value: 7}, {value: 7}]
- * Output: [3, 2] (three 2's and two 7's)
- */
+//This function counts quantities of the same card
+//for example: 
+//Input no pair:  [{value: 2}, {value: 5}, {value: 9}, {value: 11}, {value: 13}]
+//Output: [1, 1, 1, 1, 1]
+//Input two Pair:  [{value: 8}, {value: 8}, {value: 4}, {value: 4}, {value: 6}]
+//Output: [2, 2, 1]
 function getValueCounts(hand) {
   // Create an object to store the count of each card value
   const valueCounts = {};
