@@ -16,11 +16,6 @@ function getCardSuits(hand) {
   return hand.map((card) => card.suit);
 }
 
-/**
- * Checks if all cards in the hand are of the same suit
- * @param {Array} hand - Array of card objects
- * @returns {boolean} True if all cards are the same suit
- */
 function isFlush(hand) {
   const suits = getCardSuits(hand);
   return suits.every((suit) => suit === suits[0]);
