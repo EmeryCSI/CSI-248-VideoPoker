@@ -8,11 +8,6 @@ import { payTable } from "./PayTable";
  * Three of a Kind, Two Pair, and Jacks or Better.
  */
 
-/**
- * Gets the numerical values of all cards in the hand, sorted in ascending order
- * @param {Array} hand - Array of card objects with value and suit properties
- * @returns {Array} Array of card values sorted in ascending order
- */
 function getCardValues(hand) {
   return hand.map((card) => card.value).sort((a, b) => a - b);
 }
