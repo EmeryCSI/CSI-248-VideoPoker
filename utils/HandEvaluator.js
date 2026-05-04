@@ -12,11 +12,6 @@ function getCardValues(hand) {
   return hand.map((card) => card.value).sort((a, b) => a - b);
 }
 
-/**
- * Gets the suits of all cards in the hand
- * @param {Array} hand - Array of card objects
- * @returns {Array} Array of card suits
- */
 function getCardSuits(hand) {
   return hand.map((card) => card.suit);
 }
